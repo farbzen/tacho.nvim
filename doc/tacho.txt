@@ -1,0 +1,98 @@
+*tacho.txt*  Typing speed in words per minute
+
+==============================================================================
+CONTENTS                                                      *tacho-contents*
+
+  1. Introduction ........................................ |tacho-introduction|
+  2. Setup ............................................... |tacho-setup|
+  3. Commands ............................................ |tacho-commands|
+  4. Lua API ............................................. |tacho-api|
+  5. Statusline .......................................... |tacho-statusline|
+  6. Measurement ......................................... |tacho-measurement|
+
+==============================================================================
+1. INTRODUCTION                                           *tacho-introduction*
+
+tacho.nvim measures your typing speed in words per minute (WPM). It provides
+an all-time average that is persisted across sessions and a live value of
+your current pace. Both values are cheap to read and suited for statuslines.
+
+==============================================================================
+2. SETUP                                                         *tacho-setup*
+
+The plugin starts tracking as soon as it is loaded. Calling |tacho.setup()|
+is only needed to change options.
+
+                                                               *tacho.setup()*
+require("tacho").setup({opts})
+    Options (defaults shown): >lua
+    require("tacho").setup({
+      idle_timeout_ms = 5000,
+      live_window_ms = 10000,
+      save_interval_ms = 30000,
+      cache_path = vim.fn.stdpath("cache") .. "/tacho.json",
+      statusline_format = "%d wpm (Ø %d)",
+    })
+<
+    idle_timeout_ms     Gaps between keystrokes longer than this are not
+                        counted as typing time.
+    live_window_ms      Length of the sliding window for the live value.
+    save_interval_ms    Minimum time between automatic saves on
+                        |InsertLeave|.
+    cache_path          File the all-time statistics are stored in.
+    statusline_format   |string.format()| pattern for |tacho.statusline()|,
+                        arguments are live WPM and average WPM.
+
+==============================================================================
+3. COMMANDS                                                   *tacho-commands*
+
+                                                                      *:Tacho*
+:Tacho [show]       Show average, live WPM, characters and active time.
+:Tacho save         Write pending data to the cache file now.
+:Tacho reset        Reset all statistics after a confirmation.
+:Tacho! reset       Reset all statistics without confirmation.
+
+==============================================================================
+4. LUA API                                                         *tacho-api*
+
+tacho.wpm()                                                      *tacho.wpm()*
+    All-time average WPM as an integer.
+
+tacho.live_wpm()                                            *tacho.live_wpm()*
+    Current WPM over the live window as an integer, 0 when idle.
+
+tacho.statusline()                                        *tacho.statusline()*
+    Formatted string, see `statusline_format`.
+
+tacho.stats()                                                  *tacho.stats()*
+    Table with the fields `wpm`, `live_wpm`, `characters` and
+    `active_seconds`.
+
+tacho.save()                                                    *tacho.save()*
+    Merge pending data into the cache file. Returns true on success.
+
+tacho.reset()                                                  *tacho.reset()*
+    Clear all statistics in memory and in the cache file.
+
+==============================================================================
+5. STATUSLINE                                               *tacho-statusline*
+
+lualine: >lua
+    require("lualine").setup({ sections = { lualine_x = { "tacho" } } })
+<
+Native statusline: >lua
+    vim.o.statusline = "%f %= %{v:lua.require'tacho'.statusline()}"
+<
+==============================================================================
+6. MEASUREMENT                                             *tacho-measurement*
+
+- One word equals five characters; deletions are not subtracted (gross WPM).
+- Every character typed in insert mode (|InsertCharPre|) counts. Pasted text
+  and accepted completions are not counted.
+- Only active typing time counts: a gap longer than `idle_timeout_ms` or
+  leaving insert mode starts a new burst whose first keystroke only sets the
+  reference time.
+- Several Neovim instances merge their unsaved data into the cache file
+  instead of overwriting each other.
+
+ vim:tw=78:ts=8:ft=help:norl:
