@@ -16,14 +16,14 @@ restarts tracking with the new options.
 
 ## Lua API
 
-| Function                         | Returns                                                              |
-| -------------------------------- | -------------------------------------------------------------------- |
-| `require("tacho").wpm()`         | All-time average WPM (integer), persisted across sessions.           |
-| `require("tacho").live_wpm()`    | Current WPM over the live window (integer), `0` when idle.           |
-| `require("tacho").statusline()`  | Formatted string for a statusline.                                   |
-| `require("tacho").stats()`       | Table with `wpm`, `live_wpm`, `characters`, `active_seconds`.        |
-| `require("tacho").save()`        | Merges pending data into the cache file; `true` on success.          |
-| `require("tacho").reset()`       | Clears all statistics in memory and in the cache file.               |
+| Function                         | Returns                                                                   |
+| -------------------------------- | ------------------------------------------------------------------------- |
+| `require("tacho").wpm()`         | All-time average WPM (integer), persisted across sessions.                |
+| `require("tacho").live_wpm()`    | Current WPM over the live window (integer), `0` when idle.                |
+| `require("tacho").statusline()`  | Formatted string for a statusline.                                        |
+| `require("tacho").stats()`       | Table with `wpm`, `live_wpm`, `characters`, `active_seconds`.             |
+| `require("tacho").save()`        | Merges pending data into the cache file; `true` on success.               |
+| `require("tacho").reset()`       | Clears all statistics in memory and in the cache file; `true` on success. |
 
 All getters only do arithmetic on values kept in memory, so they are cheap
 enough to be called on every statusline redraw.
