@@ -72,7 +72,8 @@ tacho.save()                                                    *tacho.save()*
     Merge pending data into the cache file. Returns true on success.
 
 tacho.reset()                                                  *tacho.reset()*
-    Clear all statistics in memory and in the cache file.
+    Clear all statistics in memory and in the cache file. Returns true if
+    the cache file was written.
 
 ==============================================================================
 5. STATUSLINE                                               *tacho-statusline*
@@ -87,8 +88,8 @@ Native statusline: >lua
 6. MEASUREMENT                                             *tacho-measurement*
 
 - One word equals five characters; deletions are not subtracted (gross WPM).
-- Every character typed in insert mode (|InsertCharPre|) counts. Pasted text
-  and accepted completions are not counted.
+- Every character typed in insert or replace mode (|InsertCharPre|) counts.
+  Pasted text and accepted completions are not counted.
 - Only active typing time counts: a gap longer than `idle_timeout_ms` or
   leaving insert mode starts a new burst whose first keystroke only sets the
   reference time.
