@@ -9,7 +9,7 @@ _A speedometer for your typing – words per minute in Neovim, live and all-time
 [![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)](https://www.lua.org)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-[Overview](#overview) • [Getting Started](#getting-started) • [Usage](#usage) • [Documentation](#documentation)
+[Overview](#overview) • [Features](#features) • [Applications](#applications) • [Documentation](#documentation)
 
 </div>
 
@@ -25,7 +25,7 @@ typing time and converts characters to words using the standard definition of
 five characters per word. The all-time average survives restarts and can be
 reset at any time; the live value follows your current pace.
 
-The plugin consists of the following parts:
+The repository consists of the following parts:
 
 - **Core** – measurement, persistence and Lua API, written in
   [Lua](https://www.lua.org). The code lives in `lua/tacho/`.
@@ -46,15 +46,12 @@ The plugin consists of the following parts:
 - **Multi-instance safe**: parallel Neovim instances merge their data instead of overwriting it.
 - **Zero config**: works without calling `setup()`.
 
-## Getting Started
+## Applications
 
-### Prerequisites
+### Plugin
 
-- [Neovim](https://neovim.io) 0.10 or newer
-
-### Installation
-
-With [lazy.nvim](https://github.com/folke/lazy.nvim):
+Requires [Neovim](https://neovim.io) 0.10 or newer. Install it with
+[lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
@@ -64,25 +61,8 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
-> [!TIP]
-> The plugin is tiny and only registers three autocommands. Load it eagerly
-> when you use the lualine component `"tacho"` – lualine cannot find the
-> component of a plugin that has not been loaded yet.
-
-## Usage
-
-### Statusline
-
-```lua
-require("lualine").setup({
-  sections = { lualine_x = { "tacho" } },
-})
-```
-
-This shows e.g. `72 wpm (Ø 58)` – live value and all-time average. The values
-are also available as `require("tacho").live_wpm()` and `require("tacho").wpm()`.
-
-### Commands
+Tracking starts automatically. The `:Tacho` command shows and manages the
+statistics:
 
 | Command        | Effect                                    |
 | -------------- | ----------------------------------------- |
@@ -90,7 +70,7 @@ are also available as `require("tacho").live_wpm()` and `require("tacho").wpm()`
 | `:Tacho save`  | Write pending data to the cache file now. |
 | `:Tacho reset` | Reset all statistics (`!` skips confirm). |
 
-### Configuration
+The most important options with their defaults:
 
 ```lua
 require("tacho").setup({
@@ -106,6 +86,25 @@ All options and the full Lua API are listed in
 > [!NOTE]
 > Pasted text and accepted completions are not counted, and deletions are not
 > subtracted (gross WPM). See [docs/measurement.md](docs/measurement.md).
+
+### lualine component
+
+Adds the values to the [lualine](https://github.com/nvim-lualine/lualine.nvim)
+statusline:
+
+```lua
+require("lualine").setup({
+  sections = { lualine_x = { "tacho" } },
+})
+```
+
+This shows e.g. `72 wpm (Ø 58)` – live value and all-time average. Other
+statuslines can use `require("tacho").live_wpm()` and `require("tacho").wpm()`.
+
+> [!TIP]
+> Load the plugin eagerly (`lazy = false`) – lualine cannot find the component
+> of a plugin that has not been loaded yet. The plugin is tiny and only
+> registers three autocommands.
 
 ## Documentation
 
