@@ -9,22 +9,32 @@ _A speedometer for your typing – words per minute in Neovim, live and all-time
 [![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)](https://www.lua.org)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-[Overview](#overview) • [Getting Started](#getting-started) • [Usage](#usage) • [Development](#development) • [Documentation](#documentation)
+[Overview](#overview) • [Getting Started](#getting-started) • [Usage](#usage) • [Documentation](#documentation)
 
 </div>
 
-tacho.nvim measures how fast you type in Neovim. It keeps an all-time average
-in words per minute that survives restarts and can be reset at any time, plus
-a live value of your current pace. Both are cheap to read, so they fit into
-statuslines such as [lualine](https://github.com/nvim-lualine/lualine.nvim).
+tacho.nvim is a Neovim plugin for everyone who wants to know how fast they
+really type while coding or writing. It shows your current pace and an
+all-time average in words per minute – right in the statusline, without
+leaving the editor or running a separate typing test.
 
 ## Overview
 
 The plugin listens to characters typed in insert mode, counts only active
 typing time and converts characters to words using the standard definition of
-five characters per word. The code lives in `lua/tacho/`, the command and
-autostart in `plugin/tacho.lua`, the lualine component in
-`lua/lualine/components/tacho.lua`.
+five characters per word. The all-time average survives restarts and can be
+reset at any time; the live value follows your current pace.
+
+The plugin consists of the following parts:
+
+- **Core** – measurement, persistence and Lua API, written in
+  [Lua](https://www.lua.org). The code lives in `lua/tacho/`.
+- **`:Tacho` command** – show, save and reset statistics, plus autostart. The
+  code lives in `plugin/tacho.lua`.
+- **lualine component** – ready-made statusline element for
+  [lualine](https://github.com/nvim-lualine/lualine.nvim). The code lives in
+  `lua/lualine/components/tacho.lua`.
+- **Vim help** – `:help tacho`. The file lives in `doc/tacho.txt`.
 
 ## Features
 
@@ -69,17 +79,16 @@ require("lualine").setup({
 })
 ```
 
-This shows e.g. `72 wpm (Ø 58)` – live value and all-time average. The
-values are also available as `require("tacho").live_wpm()` and
-`require("tacho").wpm()`.
+This shows e.g. `72 wpm (Ø 58)` – live value and all-time average. The values
+are also available as `require("tacho").live_wpm()` and `require("tacho").wpm()`.
 
 ### Commands
 
-| Command         | Effect                                     |
-| --------------- | ------------------------------------------ |
-| `:Tacho`        | Show average, live WPM and totals.         |
-| `:Tacho save`   | Write pending data to the cache file now.  |
-| `:Tacho reset`  | Reset all statistics (`!` skips confirm).  |
+| Command        | Effect                                    |
+| -------------- | ----------------------------------------- |
+| `:Tacho`       | Show average, live WPM and totals.        |
+| `:Tacho save`  | Write pending data to the cache file now. |
+| `:Tacho reset` | Reset all statistics (`!` skips confirm). |
 
 ### Configuration
 
@@ -94,35 +103,15 @@ require("tacho").setup({
 All options and the full Lua API are listed in
 [docs/configuration.md](docs/configuration.md).
 
-## Development
-
-### Prerequisites
-
-- [devenv](https://devenv.sh) (provides Neovim, StyLua, selene and lua-language-server)
-
-```sh
-git clone git@github.com:farbzen/tacho.nvim.git
-cd tacho.nvim
-devenv shell
-```
-
-### Tests
-
-```sh
-run-tests
-```
-
-### Code quality
-
-```sh
-lint      # stylua --check and selene
-format    # stylua
-```
+> [!NOTE]
+> Pasted text and accepted completions are not counted, and deletions are not
+> subtracted (gross WPM). See [docs/measurement.md](docs/measurement.md).
 
 ## Documentation
 
 - [Configuration and API](docs/configuration.md)
 - [Measurement](docs/measurement.md)
+- [Development](docs/development.md) – environment, tests and code quality
 - Vim help: `:help tacho`
 - [Changelog](CHANGELOG.md)
 
