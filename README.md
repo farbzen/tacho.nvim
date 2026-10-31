@@ -9,7 +9,7 @@ _A speedometer for your typing – words per minute in Neovim, live and all-time
 [![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)](https://www.lua.org)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-[Overview](#overview) • [Features](#features) • [Applications](#applications) • [Documentation](#documentation)
+[Overview](#overview) • [Getting Started](#getting-started) • [Applications](#applications) • [Documentation](#documentation)
 
 </div>
 
@@ -46,12 +46,34 @@ The repository consists of the following parts:
 - **Multi-instance safe**: parallel Neovim instances merge their data instead of overwriting it.
 - **Zero config**: works without calling `setup()`.
 
+## Getting Started
+
+### Prerequisites
+
+- [Neovim](https://neovim.io) 0.10 or newer
+- [devenv](https://devenv.sh) for development (provides Neovim, StyLua,
+  selene and lua-language-server)
+
+### Development environment
+
+```sh
+git clone git@github.com:farbzen/tacho.nvim.git
+cd tacho.nvim
+devenv shell
+```
+
+The shell provides the scripts `run-tests`, `lint` and `format`; details are
+in [docs/development.md](docs/development.md).
+
+> [!TIP]
+> With [direnv](https://direnv.net) installed, `direnv allow` loads the
+> environment automatically via the included `.envrc`.
+
 ## Applications
 
 ### Plugin
 
-Requires [Neovim](https://neovim.io) 0.10 or newer. Install it with
-[lazy.nvim](https://github.com/folke/lazy.nvim):
+Install it with [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
