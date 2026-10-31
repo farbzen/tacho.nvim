@@ -31,7 +31,7 @@ require("tacho").setup({opts})
       live_window_ms = 10000,
       save_interval_ms = 30000,
       cache_path = vim.fn.stdpath("cache") .. "/tacho.json",
-      statusline_format = "%d wpm (Ø %d)",
+      statusline_format = "{live_wpm} wpm (Ø {wpm})",
     })
 <
     idle_timeout_ms     Gaps between keystrokes longer than this are not
@@ -40,8 +40,10 @@ require("tacho").setup({opts})
     save_interval_ms    Minimum time between automatic saves on
                         |InsertLeave|.
     cache_path          File the all-time statistics are stored in.
-    statusline_format   |string.format()| pattern for |tacho.statusline()|,
-                        arguments are live WPM and average WPM.
+    statusline_format   Template for |tacho.statusline()|. The named
+                        variables `{live_wpm}`, `{wpm}` and `{characters}`
+                        are replaced by their values; unknown names are
+                        left unchanged.
 
 ==============================================================================
 3. COMMANDS                                                   *tacho-commands*

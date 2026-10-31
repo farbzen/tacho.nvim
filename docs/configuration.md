@@ -12,7 +12,24 @@ restarts tracking with the new options.
 | `live_window_ms`    | `10000`                                 | Length of the sliding window for the live value.                            |
 | `save_interval_ms`  | `30000`                                 | Minimum time between automatic saves on `InsertLeave`.                      |
 | `cache_path`        | `stdpath("cache") .. "/tacho.json"`     | File the all-time statistics are persisted in.                              |
-| `statusline_format` | `"%d wpm (Ø %d)"`                       | `string.format` pattern for `statusline()`; arguments: live WPM, average.   |
+| `statusline_format` | `"{live_wpm} wpm (Ø {wpm})"`            | Template for `statusline()` with named variables, see below.                |
+
+### Statusline variables
+
+`statusline_format` replaces each `{name}` with the value of the named
+variable; unknown names are left unchanged.
+
+| Variable       | Value                               |
+| -------------- | ----------------------------------- |
+| `{live_wpm}`   | Current WPM over the live window.   |
+| `{wpm}`        | All-time average WPM.               |
+| `{characters}` | Total number of counted characters. |
+
+```lua
+require("tacho").setup({
+  statusline_format = "{live_wpm} wpm · Ø {wpm}",
+})
+```
 
 ## Lua API
 

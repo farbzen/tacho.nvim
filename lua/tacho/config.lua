@@ -6,7 +6,7 @@ function M.defaults()
     live_window_ms = 10000,
     save_interval_ms = 30000,
     cache_path = vim.fn.stdpath("cache") .. "/tacho.json",
-    statusline_format = "%d wpm (Ø %d)",
+    statusline_format = "{live_wpm} wpm (Ø {wpm})",
   }
 end
 

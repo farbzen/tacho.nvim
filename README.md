@@ -98,7 +98,7 @@ The most important options with their defaults:
 require("tacho").setup({
   idle_timeout_ms = 5000,
   live_window_ms = 10000,
-  statusline_format = "%d wpm (Ø %d)",
+  statusline_format = "{live_wpm} wpm (Ø {wpm})",
 })
 ```
 

@@ -146,6 +146,17 @@ test("setup loads the cached average", function()
   assert_equal(tacho.statusline(), "0 wpm (Ø 60)", "statusline")
 end)
 
+test("statusline_format substitutes named variables", function()
+  local path = temporary_cache_path()
+  storage.write(path, { chars = 300, active_ns = 60 * SECOND })
+  tacho.setup({
+    cache_path = path,
+    statusline_format = "Ø {wpm} / {live_wpm} live / {characters} chars {unknown} 100%",
+  })
+  assert_equal(tacho.statusline(), "Ø 60 / 0 live / 300 chars {unknown} 100%", "statusline")
+  tacho.setup({ cache_path = path })
+end)
+
 test("reset clears memory and cache file", function()
   local path = temporary_cache_path()
   storage.write(path, { chars = 300, active_ns = 60 * SECOND })

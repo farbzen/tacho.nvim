@@ -98,7 +98,13 @@ function M.stats()
 end
 
 function M.statusline()
-  return string.format(config.options.statusline_format, M.live_wpm(), M.wpm())
+  local stats = M.stats()
+  local variables = {
+    live_wpm = tostring(stats.live_wpm),
+    wpm = tostring(stats.wpm),
+    characters = tostring(stats.characters),
+  }
+  return (config.options.statusline_format:gsub("{([%w_]+)}", variables))
 end
 
 return M
