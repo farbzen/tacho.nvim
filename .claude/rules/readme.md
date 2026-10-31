@@ -56,7 +56,7 @@ _<One-sentence tagline>_
 [![Version](https://img.shields.io/badge/version-<X.Y.Z>-blue?style=flat-square)](CHANGELOG.md)
 <!-- further badges only for technologies actually used -->
 
-[Overview](#overview) • [Getting Started](#getting-started) • [Applications](#applications) • [Documentation](#documentation)
+[Overview](#overview) • [Getting Started](#getting-started) • [Applications](#applications) • [Development](#development) • [Documentation](#documentation)
 
 </div>
 
@@ -101,6 +101,22 @@ devenv shell
 ```sh
 <start command>
 ```
+
+## Development
+
+### Tests
+
+```sh
+<test command per app>
+```
+
+### Code quality
+
+<Linter/formatter/type checking with commands, from ruff.toml, pyrightconfig.json etc.>
+
+### API documentation
+
+<e.g. Doxygen, OpenAPI at /docs – only if present>
 
 ## Deployment
 
