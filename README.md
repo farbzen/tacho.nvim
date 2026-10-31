@@ -9,7 +9,7 @@ _A speedometer for your typing – words per minute in Neovim, live and all-time
 [![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)](https://www.lua.org)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-[Overview](#overview) • [Getting Started](#getting-started) • [Applications](#applications) • [Documentation](#documentation)
+[Overview](#overview) • [Getting Started](#getting-started) • [Applications](#applications) • [Development](#development) • [Documentation](#documentation)
 
 </div>
 
@@ -44,6 +44,7 @@ The repository consists of the following parts:
 - **Fast reads**: getters only do arithmetic on in-memory values – safe for every redraw.
 - **Idle-aware**: pauses longer than the idle timeout and time outside insert mode are ignored.
 - **Multi-instance safe**: parallel Neovim instances merge their data instead of overwriting it.
+- **Flexible statusline text**: a template with named variables such as `{live_wpm}` and `{wpm}`.
 - **Zero config**: works without calling `setup()`.
 
 ## Getting Started
@@ -61,9 +62,6 @@ git clone git@github.com:farbzen/tacho.nvim.git
 cd tacho.nvim
 devenv shell
 ```
-
-The shell provides the scripts `run-tests`, `lint` and `format`; details are
-in [docs/development.md](docs/development.md).
 
 > [!TIP]
 > With [direnv](https://direnv.net) installed, `direnv allow` loads the
@@ -102,7 +100,8 @@ require("tacho").setup({
 })
 ```
 
-All options and the full Lua API are listed in
+`statusline_format` accepts the variables `{live_wpm}`, `{wpm}` and
+`{characters}`. All options and the full Lua API are listed in
 [docs/configuration.md](docs/configuration.md).
 
 > [!NOTE]
@@ -120,13 +119,35 @@ require("lualine").setup({
 })
 ```
 
-This shows e.g. `72 wpm (Ø 58)` – live value and all-time average. Other
-statuslines can use `require("tacho").live_wpm()` and `require("tacho").wpm()`.
+This shows e.g. `72 wpm (Ø 58)` – live value and all-time average, formatted
+by `statusline_format`. Other statuslines can use
+`require("tacho").statusline()`, `require("tacho").live_wpm()` and
+`require("tacho").wpm()`.
 
 > [!TIP]
 > Load the plugin eagerly (`lazy = false`) – lualine cannot find the component
 > of a plugin that has not been loaded yet. The plugin is tiny and only
 > registers three autocommands.
+
+## Development
+
+### Tests
+
+```sh
+run-tests
+```
+
+The suite in `tests/run.lua` runs in a clean headless Neovim with a separate
+cache directory, so your real statistics stay untouched.
+
+### Code quality
+
+```sh
+lint      # stylua --check and selene
+format    # stylua
+```
+
+Details and the project layout are in [docs/development.md](docs/development.md).
 
 ## Documentation
 
