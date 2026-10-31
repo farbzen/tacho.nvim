@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-10-26
+## [0.1.0] - 2026-10-31
 
 ### Added
 
@@ -19,7 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   across several running Neovim instances.
 - Lua API `wpm()`, `live_wpm()`, `stats()`, `statusline()`, `save()`,
   `reset()` and `setup()`.
+- Configurable `statusline_format` template with the named variables
+  `{live_wpm}`, `{wpm}` and `{characters}`.
 - `:Tacho` command with `show`, `save` and `reset` (`:Tacho! reset` skips the
   confirmation).
 - lualine component `tacho`.
 - Vim help file `:help tacho`.
+
+[Unreleased]: https://github.com/farbzen/tacho.nvim/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/farbzen/tacho.nvim/releases/tag/v0.1.0
