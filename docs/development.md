@@ -13,6 +13,10 @@ cd tacho.nvim
 devenv shell
 ```
 
+> [!TIP]
+> With [direnv](https://direnv.net) installed, `direnv allow` loads the
+> environment automatically via the included `.envrc`.
+
 ## Tests
 
 ```sh

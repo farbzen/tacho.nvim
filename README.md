@@ -9,7 +9,8 @@ _A speedometer for your typing – words per minute in Neovim, live and all-time
 [![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)](https://www.lua.org)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-[Overview](#overview) • [Getting Started](#getting-started) • [Applications](#applications) • [Development](#development) • [Documentation](#documentation)
+[Overview](#overview) • [Getting Started](#getting-started) •
+[Documentation](#documentation)
 
 </div>
 
@@ -52,24 +53,10 @@ The repository consists of the following parts:
 ### Prerequisites
 
 - [Neovim](https://neovim.io) 0.10 or newer
-- [devenv](https://devenv.sh) for development (provides Neovim, StyLua,
-  selene and lua-language-server)
+- Optional: [lualine](https://github.com/nvim-lualine/lualine.nvim) for the
+  ready-made statusline component
 
-### Development environment
-
-```sh
-git clone git@github.com:farbzen/tacho.nvim.git
-cd tacho.nvim
-devenv shell
-```
-
-> [!TIP]
-> With [direnv](https://direnv.net) installed, `direnv allow` loads the
-> environment automatically via the included `.envrc`.
-
-## Applications
-
-### Plugin
+### Installation
 
 Install it with [lazy.nvim](https://github.com/folke/lazy.nvim):
 
@@ -81,6 +68,13 @@ Install it with [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
+> [!TIP]
+> Load the plugin eagerly (`lazy = false`) – lualine cannot find the component
+> of a plugin that has not been loaded yet. The plugin is tiny and only
+> registers three autocommands.
+
+### Usage
+
 Tracking starts automatically. The `:Tacho` command shows and manages the
 statistics:
 
@@ -89,6 +83,18 @@ statistics:
 | `:Tacho`       | Show average, live WPM and totals.        |
 | `:Tacho save`  | Write pending data to the cache file now. |
 | `:Tacho reset` | Reset all statistics (`!` skips confirm). |
+
+Add the values to the lualine statusline:
+
+```lua
+require("lualine").setup({
+  sections = { lualine_x = { "tacho" } },
+})
+```
+
+This shows e.g. `72 wpm (Ø 58)` – live value and all-time average. Other
+statuslines can use `require("tacho").statusline()`,
+`require("tacho").live_wpm()` and `require("tacho").wpm()`.
 
 The most important options with their defaults:
 
@@ -101,59 +107,18 @@ require("tacho").setup({
 ```
 
 `statusline_format` accepts the variables `{live_wpm}`, `{wpm}` and
-`{characters}`. All options and the full Lua API are listed in
-[docs/configuration.md](docs/configuration.md).
+`{characters}`.
 
 > [!NOTE]
 > Pasted text and accepted completions are not counted, and deletions are not
 > subtracted (gross WPM). See [docs/measurement.md](docs/measurement.md).
 
-### lualine component
-
-Adds the values to the [lualine](https://github.com/nvim-lualine/lualine.nvim)
-statusline:
-
-```lua
-require("lualine").setup({
-  sections = { lualine_x = { "tacho" } },
-})
-```
-
-This shows e.g. `72 wpm (Ø 58)` – live value and all-time average, formatted
-by `statusline_format`. Other statuslines can use
-`require("tacho").statusline()`, `require("tacho").live_wpm()` and
-`require("tacho").wpm()`.
-
-> [!TIP]
-> Load the plugin eagerly (`lazy = false`) – lualine cannot find the component
-> of a plugin that has not been loaded yet. The plugin is tiny and only
-> registers three autocommands.
-
-## Development
-
-### Tests
-
-```sh
-run-tests
-```
-
-The suite in `tests/run.lua` runs in a clean headless Neovim with a separate
-cache directory, so your real statistics stay untouched.
-
-### Code quality
-
-```sh
-lint      # stylua --check and selene
-format    # stylua
-```
-
-Details and the project layout are in [docs/development.md](docs/development.md).
-
 ## Documentation
 
-- [Configuration and API](docs/configuration.md)
+- [Configuration and API](docs/configuration.md) – all options and the Lua API
 - [Measurement](docs/measurement.md)
-- [Development](docs/development.md) – environment, tests and code quality
+- [Development](docs/development.md) – environment, tests, code quality and
+  project layout
 - Vim help: `:help tacho`
 - [Changelog](CHANGELOG.md)
 
