@@ -9,8 +9,8 @@ _A speedometer for your typing – words per minute in Neovim, live and all-time
 [![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)](https://www.lua.org)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-[Overview](#overview) • [Getting Started](#getting-started) •
-[Documentation](#documentation)
+[Overview](#overview) • [Features](#features) •
+[Getting Started](#getting-started) • [Documentation](#documentation)
 
 </div>
 
