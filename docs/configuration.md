@@ -8,11 +8,11 @@ restarts tracking with the new options.
 
 | Option              | Default                                 | Description                                                                 |
 | ------------------- | --------------------------------------- | --------------------------------------------------------------------------- |
-| `idle_timeout_ms`   | `5000`                                  | Gaps between keystrokes longer than this are not counted as typing time.    |
+| `idle_timeout_ms`   | `1000`                                  | Gaps between keystrokes longer than this are not counted as typing time.    |
 | `live_window_ms`    | `10000`                                 | Length of the sliding window for the live value.                            |
 | `save_interval_ms`  | `30000`                                 | Minimum time between automatic saves on `InsertLeave`.                      |
 | `cache_path`        | `stdpath("cache") .. "/tacho.json"`     | File the all-time statistics are persisted in.                              |
-| `statusline_format` | `"{live_wpm} wpm (Ø {wpm})"`            | Template for `statusline()` with named variables, see below.                |
+| `statusline_format` | `"󰼭 {wpm}"`                             | Template for `statusline()` with named variables, see below.                |
 
 ### Statusline variables
 

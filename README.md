@@ -93,7 +93,8 @@ require("lualine").setup({
 })
 ```
 
-This shows e.g. `72 wpm (Ø 58)` – live value and all-time average. Other
+This shows e.g. `󰼭 58` – the all-time average (the icon requires a
+[Nerd Font](https://www.nerdfonts.com/)). Other
 statuslines can use `require("tacho").statusline()`,
 `require("tacho").live_wpm()` and `require("tacho").wpm()`.
 
@@ -101,9 +102,9 @@ The most important options with their defaults:
 
 ```lua
 require("tacho").setup({
-  idle_timeout_ms = 5000,
+  idle_timeout_ms = 1000,
   live_window_ms = 10000,
-  statusline_format = "{live_wpm} wpm (Ø {wpm})",
+  statusline_format = "󰼭 {wpm}",
 })
 ```
 

@@ -143,7 +143,7 @@ test("setup loads the cached average", function()
   storage.write(path, { chars = 300, active_ns = 60 * SECOND })
   tacho.setup({ cache_path = path })
   assert_equal(tacho.wpm(), 60, "wpm")
-  assert_equal(tacho.statusline(), "0 wpm (Ø 60)", "statusline")
+  assert_equal(tacho.statusline(), "󰼭 60", "statusline")
 end)
 
 test("statusline_format substitutes named variables", function()

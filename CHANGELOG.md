@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Default `idle_timeout_ms` lowered from 5000 to 1000, so pauses longer than
+  one second no longer count as typing time.
+- Default `statusline_format` is now `"󰼭 {wpm}"` and only shows the all-time
+  average with a Nerd Font icon instead of `"{live_wpm} wpm (Ø {wpm})"`.
+
 ## [0.1.0] - 2026-10-31
 
 ### Added

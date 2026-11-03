@@ -13,7 +13,7 @@
 
 Only time spent actively typing counts:
 
-- A keystroke within `idle_timeout_ms` (default 5 s) of the previous one adds
+- A keystroke within `idle_timeout_ms` (default 1 s) of the previous one adds
   one character and the gap between both keystrokes.
 - A longer gap starts a new burst; the first keystroke of a burst only sets the
   reference time. With `n` keystrokes there are `n - 1` measured intervals,

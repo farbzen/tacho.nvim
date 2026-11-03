@@ -2,11 +2,11 @@ local M = {}
 
 function M.defaults()
   return {
-    idle_timeout_ms = 5000,
+    idle_timeout_ms = 1000,
     live_window_ms = 10000,
     save_interval_ms = 30000,
     cache_path = vim.fn.stdpath("cache") .. "/tacho.json",
-    statusline_format = "{live_wpm} wpm (Ø {wpm})",
+    statusline_format = "󰼭 {wpm}",
   }
 end
 
