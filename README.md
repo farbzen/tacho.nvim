@@ -7,7 +7,7 @@ _A speedometer for your typing – words per minute in Neovim, live and all-time
 [![Version](https://img.shields.io/badge/version-0.1.0-blue?style=for-the-badge&labelColor=081216)](CHANGELOG.md)
 [![Neovim](https://img.shields.io/badge/Neovim-0.10%2B-57A143?style=for-the-badge&labelColor=081216&logo=neovim&logoColor=white)](https://neovim.io)
 [![Lua](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&labelColor=081216&logo=lua&logoColor=white)](https://www.lua.org)
-[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge&labelColor=081216)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-B0BFC9?style=for-the-badge&labelColor=081216)](LICENSE)
 [![Ko-Fi donate](https://img.shields.io/badge/donate-kofi?style=for-the-badge&labelColor=081216&color=ee5556&logo=ko-fi&logoColor=white)](https://ko-fi.com/farbzen)
 
 [Overview](#overview) • [Features](#features) •
