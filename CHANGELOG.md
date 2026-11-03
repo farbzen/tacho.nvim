@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-03
+
 ### Changed
 
 - Default `idle_timeout_ms` lowered from 5000 to 1000, so pauses longer than
@@ -33,5 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - lualine component `tacho`.
 - Vim help file `:help tacho`.
 
-[Unreleased]: https://github.com/farbzen/tacho.nvim/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/farbzen/tacho.nvim/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/farbzen/tacho.nvim/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/farbzen/tacho.nvim/releases/tag/v0.1.0
