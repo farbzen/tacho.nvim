@@ -4,10 +4,10 @@
 
 _A speedometer for your typing – words per minute in Neovim, live and all-time._
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue?style=for-the-badge)](CHANGELOG.md)
-[![Neovim](https://img.shields.io/badge/Neovim-0.10%2B-57A143?style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io)
-[![Lua](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)](https://www.lua.org)
-[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue?style=for-the-badge&labelColor=081216)](CHANGELOG.md)
+[![Neovim](https://img.shields.io/badge/Neovim-0.10%2B-57A143?style=for-the-badge&labelColor=081216&logo=neovim&logoColor=white)](https://neovim.io)
+[![Lua](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&labelColor=081216&logo=lua&logoColor=white)](https://www.lua.org)
+[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge&labelColor=081216)](LICENSE)
 
 [Overview](#overview) • [Features](#features) •
 [Getting Started](#getting-started) • [Documentation](#documentation)
